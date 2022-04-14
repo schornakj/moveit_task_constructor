@@ -171,6 +171,9 @@ bool ExecuteTaskSolutionCapability::constructMotionPlan(const moveit_task_constr
 		exec_traj.trajectory_ = std::make_shared<robot_trajectory::RobotTrajectory>(model, group);
 		exec_traj.trajectory_->setRobotTrajectoryMsg(state, sub_traj.trajectory);
 
+		// Get controllers to use when executing this trajectory segment
+		exec_traj.controller_names_ = sub_traj.controllers;
+
 		/* TODO add action feedback and markers */
 		exec_traj.effect_on_success_ = [this, sub_traj,
 		                                description](const plan_execution::ExecutableMotionPlan* /*plan*/) {

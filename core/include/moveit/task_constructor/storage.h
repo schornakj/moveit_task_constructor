@@ -314,6 +314,9 @@ public:
 	robot_trajectory::RobotTrajectoryConstPtr trajectory() const { return trajectory_; }
 	void setTrajectory(const robot_trajectory::RobotTrajectoryPtr& t) { trajectory_ = t; }
 
+	std::vector<std::string> controllers() const { return controllers_; }
+	void setControllers(const std::vector<std::string>& controllers) { controllers_ = controllers; }
+
 	void fillMessage(moveit_task_constructor_msgs::msg::Solution& msg,
 	                 Introspection* introspection = nullptr) const override;
 
@@ -328,6 +331,9 @@ public:
 private:
 	// actual trajectory, might be empty
 	robot_trajectory::RobotTrajectoryConstPtr trajectory_;
+
+	// Names of controllers to use when executing this trajectory
+	std::vector<std::string> controllers_;
 };
 MOVEIT_CLASS_FORWARD(SubTrajectory);
 

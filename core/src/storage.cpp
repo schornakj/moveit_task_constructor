@@ -193,6 +193,8 @@ void SubTrajectory::fillMessage(moveit_task_constructor_msgs::msg::Solution& msg
 	if (trajectory())
 		trajectory()->getRobotTrajectoryMsg(t.trajectory);
 
+	t.controllers = controllers();
+
 	this->end()->scene()->getPlanningSceneDiffMsg(t.scene_diff);
 }
 
